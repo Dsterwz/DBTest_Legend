@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-        getDishes();
+        //getDishes();
     }
 
     private void init() {
@@ -72,48 +72,4 @@ public class MainActivity extends AppCompatActivity {
                 "1.02"));*/
 
     }
-
-    public void getDishes() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://food.madskill.ru/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        foodApi = retrofit.create(FoodApi.class);
-
-        Call<List<Dish>> call = foodApi.getDishes("1.01");
-        call.enqueue(new Callback<List<Dish>>() {
-            @Override
-            public void onResponse(Call<List<Dish>> call, Response<List<Dish>> response) {
-                if (response.isSuccessful()) {
-                    List<Dish> dishes = response.body();
-
-
-                    for (Dish dish : dishes) {
-                        dishRepository.insert(dish);
-                    /*
-                    String content = "";
-                    content += "Code: " + response.code() + "\n";
-                    content += "Dish ID: " + dish.getDishId() + "\n";
-                    content += "Category: " + dish.getCategory() + "\n";
-                    content += "Name Dish: " + dish.getNameDish() + "\n";
-                    content += "Price: " + dish.getPrice() + "\n";
-                    content += "Icon: " + dish.getIcon() + "\n";
-                    content += "Version: " + dish.getVersion() + "\n\n";
-
-                    anal.append(content);*/
-                    }
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<List<Dish>> call, Throwable t) {
-
-            }
-        });
-    }
-
-
-
 }
