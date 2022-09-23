@@ -1,11 +1,11 @@
 package com.dsterwz.dbtest_legend.models;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class DishesVersion {
-    private ArrayList<String> version;
+    private List<String> version;
 
-    public ArrayList<String> getVersion() {
+    public List<String> getVersion() {
         return version;
     }
 }

@@ -3,8 +3,11 @@ package com.dsterwz.dbtest_legend;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.dsterwz.dbtest_legend.models.Dish;
+import com.dsterwz.dbtest_legend.models.DishesVersion;
 import com.dsterwz.dbtest_legend.models.FoodApi;
 
 import java.util.List;
@@ -19,16 +22,15 @@ public class LaunchActivity extends AppCompatActivity {
 
     private FoodApi foodApi;
     private DishRepository dishRepository;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
-        dishRepository = new DishRepository(getApplication());
-        getDishes();
-    }
 
-    public void getDishes() {
+        dishRepository = new DishRepository(getApplication());
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://food.madskill.ru/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -36,7 +38,39 @@ public class LaunchActivity extends AppCompatActivity {
 
         foodApi = retrofit.create(FoodApi.class);
 
-        Call<List<Dish>> call = foodApi.getDishes("1.01");
+        progressBar = findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.VISIBLE);
+        getVersion();
+        //getDishes();
+        progressBar.setVisibility(View.GONE);
+    }
+
+    public void getVersion() {
+        Call<DishesVersion> call = foodApi.getVersion();
+        call.enqueue(new Callback<DishesVersion>() {
+            @Override
+            public void onResponse(Call<DishesVersion> call, Response<DishesVersion> response) {
+                if (response.isSuccessful()) {
+                    DishesVersion versions = response.body();
+                    for (String version : versions.getVersion()) {
+                        getDishes(version);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DishesVersion> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+
+
+    public void getDishes(String version) {
+        Call<List<Dish>> call = foodApi.getDishes(version);
         call.enqueue(new Callback<List<Dish>>() {
             @Override
             public void onResponse(Call<List<Dish>> call, Response<List<Dish>> response) {
