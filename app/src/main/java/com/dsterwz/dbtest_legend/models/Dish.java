@@ -7,10 +7,11 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "dishes_table")
 public class Dish {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    //@PrimaryKey(autoGenerate = true)
+    //private int id;
 
     //@ColumnInfo(name = "id")
+    @PrimaryKey
     private int dishId;
 
     private String category;
@@ -33,13 +34,13 @@ public class Dish {
         this.version = version;
     }
 
-    public void setId(int id) {
+    /*public void setId(int id) {
         this.id = id;
     }
 
     public int getId() {
         return id;
-    }
+    }*/
 
     public int getDishId() {
         return dishId;

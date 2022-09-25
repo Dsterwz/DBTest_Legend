@@ -3,6 +3,7 @@ package com.dsterwz.dbtest_legend.views;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,7 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.DishHolder> {
         Dish currentDish = dishes.get(position);
         holder.textViewTitle.setText(currentDish.getNameDish());
         holder.textViewPrice.setText(String.valueOf(currentDish.getPrice()));
+        holder.imageViewIcon.setImageResource(R.drawable.fatass);
 
     }
 
@@ -46,11 +48,13 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.DishHolder> {
     class DishHolder extends RecyclerView.ViewHolder {
         private TextView textViewTitle;
         private TextView textViewPrice;
+        private ImageView imageViewIcon;
 
         public DishHolder(@NonNull View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.text_view_title);
             textViewPrice = itemView.findViewById(R.id.text_view_price);
+            imageViewIcon = itemView.findViewById(R.id.dish_icon);
         }
     }
 }

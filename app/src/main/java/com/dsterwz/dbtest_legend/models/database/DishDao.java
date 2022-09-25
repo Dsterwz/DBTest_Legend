@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -16,7 +17,7 @@ import java.util.List;
 @Dao
 public interface DishDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Dish dish);
 
     @Update
@@ -29,15 +30,18 @@ public interface DishDao {
     @Query("DELETE FROM dishes_table")
     void deleteAllDishes();
 
-    @Query("SELECT * FROM dishes_table WHERE category = 'Foods' ORDER BY id DESC")
+    @Query("SELECT * FROM dishes_table WHERE category = 'Foods' ORDER BY dishId DESC")
     LiveData<List<Dish>> getAllFoods();
 
-    @Query("SELECT * FROM dishes_table WHERE category = 'Drinks' ORDER BY id DESC")
+    @Query("SELECT * FROM dishes_table WHERE category = 'Drinks' ORDER BY dishId DESC")
     LiveData<List<Dish>> getAllDrinks();
 
-    @Query("SELECT * FROM dishes_table WHERE category = 'Snacks' ORDER BY id DESC")
+    @Query("SELECT * FROM dishes_table WHERE category = 'Snacks' ORDER BY dishId DESC")
     LiveData<List<Dish>> getAllSnacks();
 
-    @Query("SELECT * FROM dishes_table WHERE category = 'Sauce' ORDER BY id DESC")
+    @Query("SELECT * FROM dishes_table WHERE category = 'Sauce' ORDER BY dishId DESC")
     LiveData<List<Dish>> getAllSauce();
+
+   /* @Query("SELECT dishId FROM dishes_table WHERE dishId = :dishID")
+    Integer getDishID(int dishID);*/
 }
