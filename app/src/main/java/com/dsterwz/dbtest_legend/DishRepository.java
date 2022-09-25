@@ -17,12 +17,18 @@ public class DishRepository {
     private DishDao dishDao;
     private FoodApi foodApi;
     //private ArrayList<String> dishesVersions;
-    private LiveData<List<Dish>> allDishes;
+    private LiveData<List<Dish>> allFoods;
+    private LiveData<List<Dish>> allDrinks;
+    private LiveData<List<Dish>> allSnacks;
+    private LiveData<List<Dish>> allSauce;
 
     public DishRepository(Application application) {
         DishDatabase database = DishDatabase.getInstance(application);
         dishDao = database.dishDao();
-        allDishes = dishDao.getAllDishes();
+        allFoods = dishDao.getAllFoods();
+        allDrinks = dishDao.getAllDrinks();
+        allSnacks = dishDao.getAllSnacks();
+        allSauce = dishDao.getAllSauce();
     }
 
 
@@ -44,9 +50,23 @@ public class DishRepository {
         new DeleteAllDishesAsyncTask(dishDao).execute();
     }
 
-    public LiveData<List<Dish>> getAllDishes() {
-        return allDishes;
+    public LiveData<List<Dish>> getAllFoods() {
+        return allFoods;
     }
+
+    public LiveData<List<Dish>> getAllDrinks() {
+        return allDrinks;
+    }
+
+    public LiveData<List<Dish>> getAllSnacks() {
+        return allSnacks;
+    }
+
+    public LiveData<List<Dish>> getAllSauce() {
+        return allSauce;
+    }
+
+
 
     private static class InsertDishAsyncTask extends AsyncTask<Dish, Void, Void> {
         private DishDao dishDao;

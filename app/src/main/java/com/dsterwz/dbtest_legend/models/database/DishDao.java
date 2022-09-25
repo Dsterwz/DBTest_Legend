@@ -29,6 +29,15 @@ public interface DishDao {
     @Query("DELETE FROM dishes_table")
     void deleteAllDishes();
 
-    @Query("SELECT * FROM dishes_table ORDER BY id DESC")
-    LiveData<List<Dish>> getAllDishes();
+    @Query("SELECT * FROM dishes_table WHERE category = 'Foods' ORDER BY id DESC")
+    LiveData<List<Dish>> getAllFoods();
+
+    @Query("SELECT * FROM dishes_table WHERE category = 'Drinks' ORDER BY id DESC")
+    LiveData<List<Dish>> getAllDrinks();
+
+    @Query("SELECT * FROM dishes_table WHERE category = 'Snacks' ORDER BY id DESC")
+    LiveData<List<Dish>> getAllSnacks();
+
+    @Query("SELECT * FROM dishes_table WHERE category = 'Sauce' ORDER BY id DESC")
+    LiveData<List<Dish>> getAllSauce();
 }

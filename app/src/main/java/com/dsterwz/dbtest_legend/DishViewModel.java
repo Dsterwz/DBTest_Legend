@@ -13,13 +13,19 @@ import java.util.List;
 public class DishViewModel extends AndroidViewModel {
 
     private DishRepository repository;
-    private LiveData<List<Dish>> allDishes;
+    private LiveData<List<Dish>> allFoods;
+    private LiveData<List<Dish>> allDrinks;
+    private LiveData<List<Dish>> allSnacks;
+    private LiveData<List<Dish>> allSauce;
 
 
     public DishViewModel(@NonNull Application application) {
         super(application);
         repository = new DishRepository(application);
-        allDishes = repository.getAllDishes();
+        allFoods = repository.getAllFoods();
+        allDrinks = repository.getAllDrinks();
+        allSnacks = repository.getAllSnacks();
+        allSauce = repository.getAllSauce();
     }
 
     public void insert(Dish dish) {
@@ -38,7 +44,19 @@ public class DishViewModel extends AndroidViewModel {
         repository.deleteAllDishes();
     }
 
-    public LiveData<List<Dish>> getAllDishes() {
-        return allDishes;
+    public LiveData<List<Dish>> getAllFoods() {
+        return allFoods;
+    }
+
+    public LiveData<List<Dish>> getAllDrinks() {
+        return allDrinks;
+    }
+
+    public LiveData<List<Dish>> getAllSnacks() {
+        return allSnacks;
+    }
+
+    public LiveData<List<Dish>> getAllSauce() {
+        return allSauce;
     }
 }

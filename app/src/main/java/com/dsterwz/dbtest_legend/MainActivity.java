@@ -17,12 +17,6 @@ import com.google.android.flexbox.JustifyContent;
 
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
 public class MainActivity extends AppCompatActivity {
 
     private DishRepository dishRepository;
@@ -57,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         dishViewModel = new ViewModelProvider(this).get(DishViewModel.class);
-        dishViewModel.getAllDishes().observe(this, new Observer<List<Dish>>() {
+        dishViewModel.getAllDrinks().observe(this, new Observer<List<Dish>>() {
             @Override
             public void onChanged(List<Dish> dishes) {
                 adapter.setDishes(dishes);

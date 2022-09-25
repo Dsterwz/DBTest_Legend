@@ -2,6 +2,7 @@ package com.dsterwz.dbtest_legend;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -43,6 +44,8 @@ public class LaunchActivity extends AppCompatActivity {
         getVersion();
         //getDishes();
         progressBar.setVisibility(View.GONE);
+        Intent i = new Intent(LaunchActivity.this, MainActivity.class);
+        startActivity(i);
     }
 
     public void getVersion() {
