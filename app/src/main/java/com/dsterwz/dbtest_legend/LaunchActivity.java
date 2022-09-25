@@ -6,11 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.dsterwz.dbtest_legend.models.Dish;
 import com.dsterwz.dbtest_legend.models.DishesVersion;
 import com.dsterwz.dbtest_legend.models.FoodApi;
 
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 import java.util.List;
 
 import retrofit2.Call;
@@ -40,12 +45,16 @@ public class LaunchActivity extends AppCompatActivity {
         foodApi = retrofit.create(FoodApi.class);
 
         progressBar = findViewById(R.id.progress_bar);
-        progressBar.setVisibility(View.VISIBLE);
-        getVersion();
-        //getDishes();
-        progressBar.setVisibility(View.GONE);
-        Intent i = new Intent(LaunchActivity.this, MainActivity.class);
-        startActivity(i);
+        if (isOnline()) {
+            progressBar.setVisibility(View.VISIBLE);
+            getVersion();
+            //getDishes();
+            progressBar.setVisibility(View.GONE);
+            Intent i = new Intent(LaunchActivity.this, MainActivity.class);
+            startActivity(i);
+        } else {
+            Toast.makeText(this, "Check out your internet connection, nigger!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void getVersion() {
@@ -69,7 +78,6 @@ public class LaunchActivity extends AppCompatActivity {
         });
 
     }
-
 
 
     public void getDishes(String version) {
@@ -104,5 +112,19 @@ public class LaunchActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    // ICMP 
+    public boolean isOnline() {
+        Runtime runtime = Runtime.getRuntime();
+        try {
+            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
+            int exitValue = ipProcess.waitFor();
+            return (exitValue == 0);
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 }
