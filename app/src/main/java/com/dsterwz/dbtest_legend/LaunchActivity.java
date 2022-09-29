@@ -34,7 +34,10 @@ public class LaunchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
+        init();
+    }
 
+    private void init() {
         dishRepository = new DishRepository(getApplication());
 
         Retrofit retrofit = new Retrofit.Builder()
