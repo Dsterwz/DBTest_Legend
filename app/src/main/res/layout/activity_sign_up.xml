@@ -41,7 +41,7 @@
         android:layout_marginLeft="23dp"
         android:layout_marginRight="22dp"
         android:layout_marginBottom="37dp"
-        android:hint="deliver@mail.ru"
+        android:hint="deliver@mail.com"
         android:inputType="textEmailAddress"
         android:textSize="17dp"
         app:layout_constraintBottom_toTopOf="@+id/text_view_password"
@@ -75,6 +75,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="23dp"
+        android:text="@string/password_confirm"
+        android:textColor="@color/black_opacity_40"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/edit_text_password_confirm"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/edit_text_password_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginBottom="37dp"
+        android:hint="* * * * * * * * "
+        android:inputType="textPassword"
+        android:textSize="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_view_phone_number" />
+
+    <TextView
+        android:id="@+id/text_view_phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
         android:text="@string/full_name"
         android:textColor="@color/black_opacity_40"
         android:textSize="15sp"
@@ -87,32 +110,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="23dp"
         android:layout_marginRight="22dp"
-        android:layout_marginBottom="37dp"
+        android:layout_marginBottom="47dp"
         android:hint="Olivie Berlusco"
         android:inputType="textPersonName"
-        android:textSize="17dp"
-        app:layout_constraintBottom_toTopOf="@+id/text_view_phone_number" />
-
-    <TextView
-        android:id="@+id/text_view_phone_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="23dp"
-        android:text="@string/phone_number"
-        android:textColor="@color/black_opacity_40"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/edit_text_phone_number"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/edit_text_phone_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="23dp"
-        android:layout_marginRight="22dp"
-        android:layout_marginBottom="47dp"
-        android:hint="+7 (963) 444-12-23"
-        android:inputType="phone"
         android:textSize="17dp"
         app:layout_constraintBottom_toTopOf="@+id/register_button" />
 
