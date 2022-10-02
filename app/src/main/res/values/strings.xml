@@ -8,4 +8,5 @@
     <string name="password_confirm">Password confirm</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="full_name">Full name</string>
+    <string name="search_hint">Search</string>
 </resources>

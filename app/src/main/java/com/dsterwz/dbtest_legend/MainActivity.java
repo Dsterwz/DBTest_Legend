@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.dsterwz.dbtest_legend.models.Dish;
 import com.dsterwz.dbtest_legend.models.FoodApi;
@@ -19,11 +20,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private DishRepository dishRepository;
     private DishViewModel dishViewModel;
-    private FoodApi foodApi;
     private FlexboxLayoutManager layoutManager;
-    private LiveData<List<Dish>> allDishes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         //dishViewModel.getDishes();
 
-        dishRepository = new DishRepository(getApplication());
+        //dishRepository = new DishRepository(getApplication());
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         layoutManager = new FlexboxLayoutManager(this);
@@ -65,5 +63,26 @@ public class MainActivity extends AppCompatActivity {
                 "jopa.jpg",
                 "1.02"));*/
 
+    }
+
+    public void onClickFoods(View view) {
+    }
+
+    public void onClickDrinks(View view) {
+    }
+
+    public void onClickSnacks(View view) {
+    }
+
+    public void OnClickSauce(View view) {
+    }
+
+    public void onClickSearch(View view) {
+    }
+
+    public void onClickSearchBarOpen(View view) {
+    }
+
+    public void OnClickSearchBarClose(View view) {
     }
 }

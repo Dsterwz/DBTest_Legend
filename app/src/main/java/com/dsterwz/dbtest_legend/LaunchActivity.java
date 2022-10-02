@@ -53,7 +53,7 @@ public class LaunchActivity extends AppCompatActivity {
             getVersion();
             //getDishes();
             progressBar.setVisibility(View.GONE);
-            Intent i = new Intent(LaunchActivity.this, SignUpActivity.class);
+            Intent i = new Intent(LaunchActivity.this, MainActivity.class);
             startActivity(i);
         } else {
             Toast.makeText(this, "Check out your internet connection, nigger!", Toast.LENGTH_SHORT).show();
