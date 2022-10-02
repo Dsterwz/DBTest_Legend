@@ -71,10 +71,12 @@
             android:layout_weight="1"
             android:background="@drawable/category_button_background"
             android:button="@android:color/transparent"
+            android:fontFamily="@font/nunito_bold"
             android:gravity="center"
             android:onClick="onClickDrinks"
             android:text="Drinks"
-            android:textColor="@drawable/category_button_text_color" />
+            android:textColor="@drawable/category_button_text_color"
+            android:textSize="17sp" />
 
         <RadioButton
             android:id="@+id/radio_button_snacks"
@@ -83,10 +85,12 @@
             android:layout_weight="1"
             android:background="@drawable/category_button_background"
             android:button="@android:color/transparent"
+            android:fontFamily="@font/nunito_bold"
             android:gravity="center"
             android:onClick="onClickSnacks"
             android:text="Snacks"
-            android:textColor="@drawable/category_button_text_color" />
+            android:textColor="@drawable/category_button_text_color"
+            android:textSize="17sp" />
 
         <RadioButton
             android:id="@+id/radio_button_sauce"
@@ -95,10 +99,12 @@
             android:layout_weight="1"
             android:background="@drawable/category_button_background"
             android:button="@android:color/transparent"
+            android:fontFamily="@font/nunito_bold"
             android:gravity="center"
             android:onClick="OnClickSauce"
             android:text="Sauce"
-            android:textColor="@drawable/category_button_text_color" />
+            android:textColor="@drawable/category_button_text_color"
+            android:textSize="17sp" />
 
     </RadioGroup>
 
@@ -122,7 +128,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:background="@color/white_opacity_90"
         android:paddingEnd="14dp"
@@ -179,13 +185,12 @@
 
                 </LinearLayout>
 
-                <ImageButton
-                    android:id="@+id/search_bar_bth"
+                <ImageView
+                    android:id="@+id/image_view_search_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
-                    android:background="@drawable/ic_menu_search"
-                    android:onClick="onClickSearch"
+                    android:src="@drawable/ic_menu_search"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -199,7 +204,7 @@
                     android:onClick="OnClickSearchBarClose"
                     android:src="@drawable/main_activity_close_image_part1"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/search_bar_bth"
+                    app:layout_constraintEnd_toStartOf="@+id/image_view_search_icon"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <View

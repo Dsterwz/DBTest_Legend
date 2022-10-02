@@ -21,6 +21,7 @@ public class DishRepository {
     private LiveData<List<Dish>> allDrinks;
     private LiveData<List<Dish>> allSnacks;
     private LiveData<List<Dish>> allSauce;
+    private LiveData<List<Dish>> allDishes;
 
     public DishRepository(Application application) {
         DishDatabase database = DishDatabase.getInstance(application);
@@ -29,6 +30,7 @@ public class DishRepository {
         allDrinks = dishDao.getAllDrinks();
         allSnacks = dishDao.getAllSnacks();
         allSauce = dishDao.getAllSauce();
+        allDishes = dishDao.getAllDishes();
     }
 
 
@@ -64,6 +66,10 @@ public class DishRepository {
 
     public LiveData<List<Dish>> getAllSauce() {
         return allSauce;
+    }
+
+    public LiveData<List<Dish>> getAllDishes() {
+        return allDishes;
     }
 
 

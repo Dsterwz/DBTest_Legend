@@ -17,6 +17,7 @@ public class DishViewModel extends AndroidViewModel {
     private LiveData<List<Dish>> allDrinks;
     private LiveData<List<Dish>> allSnacks;
     private LiveData<List<Dish>> allSauce;
+    private LiveData<List<Dish>> allDishes;
 
 
     public DishViewModel(@NonNull Application application) {
@@ -26,6 +27,7 @@ public class DishViewModel extends AndroidViewModel {
         allDrinks = repository.getAllDrinks();
         allSnacks = repository.getAllSnacks();
         allSauce = repository.getAllSauce();
+        allDishes = repository.getAllDishes();
     }
 
     public void insert(Dish dish) {
@@ -58,5 +60,9 @@ public class DishViewModel extends AndroidViewModel {
 
     public LiveData<List<Dish>> getAllSauce() {
         return allSauce;
+    }
+
+    public LiveData<List<Dish>> getAllDishes() {
+        return allDishes;
     }
 }

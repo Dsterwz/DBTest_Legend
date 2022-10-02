@@ -42,6 +42,9 @@ public interface DishDao {
     @Query("SELECT * FROM dishes_table WHERE category = 'Sauce' ORDER BY dishId DESC")
     LiveData<List<Dish>> getAllSauce();
 
+    @Query("SELECT * FROM dishes_table ORDER BY dishId DESC")
+    LiveData<List<Dish>> getAllDishes();
+
    /* @Query("SELECT dishId FROM dishes_table WHERE dishId = :dishID")
     Integer getDishID(int dishID);*/
 }
