@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/launch_screen_background"
     tools:context=".LaunchActivity">
-    
+
     <ImageView
         android:id="@+id/logo_circle"
         android:layout_width="263dp"
@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
-    
+
     <ImageView
         android:id="@+id/logo_pan"
         android:layout_width="100dp"
@@ -36,10 +36,11 @@
 
     <TextView
         android:id="@+id/logo_text"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
         android:textSize="48sp"
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:fontFamily="@font/italianno"
 

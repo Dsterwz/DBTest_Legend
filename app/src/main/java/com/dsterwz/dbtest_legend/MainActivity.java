@@ -11,6 +11,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.dsterwz.dbtest_legend.models.Dish;
 import com.dsterwz.dbtest_legend.views.DishAdapter;
@@ -24,9 +26,12 @@ public class MainActivity extends AppCompatActivity {
 
     private DishAdapter dishAdapter;
     private DishViewModel dishViewModel;
+    private RadioGroup dishCategory;
 
     private FlexboxLayoutManager layoutManager;
     private EditText editTextSearchBar;
+    private EditText editTextAddress;
+    private TextView textViewResults;
     private Toolbar toolbar;
 
     @Override
@@ -43,6 +48,13 @@ public class MainActivity extends AppCompatActivity {
         //dishRepository = new DishRepository(getApplication());
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        toolbar = findViewById(R.id.search_bar);
+        textViewResults = findViewById(R.id.text_view_results);
+        editTextAddress = findViewById(R.id.edit_text_address);
+        dishCategory = findViewById(R.id.categories_button_view);
+        editTextSearchBar = findViewById(R.id.edit_text_search_bar);
+
+
         layoutManager = new FlexboxLayoutManager(this);
         layoutManager.setJustifyContent(JustifyContent.CENTER);
         layoutManager.setAlignItems(AlignItems.CENTER);
@@ -60,9 +72,48 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        toolbar = findViewById(R.id.search_bar);
 
-        editTextSearchBar = findViewById(R.id.edit_text_search_bar);
+        dishCategory.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i) {
+                    case R.id.radio_button_foods:
+                        dishViewModel.getAllFoods().observe(MainActivity.this, new Observer<List<Dish>>() {
+                            @Override
+                            public void onChanged(List<Dish> dishes) {
+                                dishAdapter.setDishes(dishes);
+                            }
+                        });
+                        break;
+                    case R.id.radio_button_drinks:
+                        dishViewModel.getAllDrinks().observe(MainActivity.this, new Observer<List<Dish>>() {
+                            @Override
+                            public void onChanged(List<Dish> dishes) {
+                                dishAdapter.setDishes(dishes);
+                            }
+                        });
+                        break;
+                    case R.id.radio_button_snacks:
+                        dishViewModel.getAllSnacks().observe(MainActivity.this, new Observer<List<Dish>>() {
+                            @Override
+                            public void onChanged(List<Dish> dishes) {
+                                dishAdapter.setDishes(dishes);
+                            }
+                        });
+                        break;
+                    case R.id.radio_button_sauce:
+                        dishViewModel.getAllSauce().observe(MainActivity.this, new Observer<List<Dish>>() {
+                            @Override
+                            public void onChanged(List<Dish> dishes) {
+                                dishAdapter.setDishes(dishes);
+                            }
+                        });
+                        break;
+                }
+            }
+        });
+
+
         editTextSearchBar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -88,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
                 "1.02"));*/
 
     }
-
+/*
     public void onClickFoods(View view) {
         dishViewModel = new ViewModelProvider(this).get(DishViewModel.class);
         dishViewModel.getAllFoods().observe(this, new Observer<List<Dish>>() {
@@ -127,11 +178,13 @@ public class MainActivity extends AppCompatActivity {
                 dishAdapter.setDishes(dishes);
             }
         });
-    }
+    }*/
+
 
     public void onClickSearchBarOpen(View view) {
+        dishCategory.setVisibility(View.INVISIBLE);
+        textViewResults.setVisibility(View.VISIBLE);
         editTextSearchBar.setText("");
-        dishViewModel = new ViewModelProvider(this).get(DishViewModel.class);
         dishViewModel.getAllDishes().observe(this, new Observer<List<Dish>>() {
             @Override
             public void onChanged(List<Dish> dishes) {
@@ -141,14 +194,11 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setVisibility(View.VISIBLE);
     }
 
+
     public void OnClickSearchBarClose(View view) {
-        dishViewModel = new ViewModelProvider(this).get(DishViewModel.class);
-        dishViewModel.getAllDishes().observe(this, new Observer<List<Dish>>() {
-            @Override
-            public void onChanged(List<Dish> dishes) {
-                dishAdapter.setDishes(dishes);
-            }
-        });
+        editTextSearchBar.setText("");
+        textViewResults.setVisibility(View.INVISIBLE);
+        dishCategory.setVisibility(View.VISIBLE);
         toolbar.setVisibility(View.INVISIBLE);
     }
 }
