@@ -1,5 +1,7 @@
 package com.dsterwz.dbtest_legend.views;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -203,6 +205,9 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.DishHolder> {
             public void onClick(View view) {
                 //Toast.makeText(view.getContext(), "zalupa", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(view.getContext(), OneItemActivity.class);
+                intent.putExtra("Title", mDishName);
+                intent.putExtra("Price", currentDish.getPrice());
+                intent.putExtra("Icon", R.drawable.pngegg);
                 view.getContext().startActivity(intent);
             }
         });

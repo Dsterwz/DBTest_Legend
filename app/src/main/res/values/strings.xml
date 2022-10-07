@@ -19,4 +19,11 @@
     <string name="title_cart">Cart</string>
     <string name="title_history">History</string>
     <string name="title_profile">Profile</string>
+    <string name="delivery_description">Delivered between monday aug and thursday 20 from 8up to 91:32 pm.</string>
+    <string name="delivery_info">Delivery info</string>
+    <string name="on_boarding_delivery">Fastest delivery\n 24/7</string>
+    <string name="on_boarding_welcome">Welcome To WSR Food</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="skip_authorization">Skip authorization</string>
 </resources>

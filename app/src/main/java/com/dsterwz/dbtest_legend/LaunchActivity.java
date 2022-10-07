@@ -35,6 +35,7 @@ public class LaunchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
         init();
+        getSupportActionBar().hide();
     }
 
     private void init() {
@@ -53,7 +54,7 @@ public class LaunchActivity extends AppCompatActivity {
             getVersion();
             //getDishes();
             progressBar.setVisibility(View.GONE);
-            Intent i = new Intent(LaunchActivity.this, MainActivity.class);
+            Intent i = new Intent(LaunchActivity.this, OnBoardingActivity.class);
             startActivity(i);
         } else {
             Toast.makeText(this, "Check out your internet connection, nigger!", Toast.LENGTH_SHORT).show();
