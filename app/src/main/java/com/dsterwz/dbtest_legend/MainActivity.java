@@ -2,10 +2,12 @@ package com.dsterwz.dbtest_legend;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
         init();
         //getDishes();
     }
@@ -63,6 +66,18 @@ public class MainActivity extends AppCompatActivity {
 
         dishAdapter = new DishAdapter();
         recyclerView.setAdapter(dishAdapter);
+
+        dishAdapter.setOnItemClickListener(new DishAdapter.OneItemClickListener() {
+            @Override
+            public void onItemClick(Dish dish) {
+                editTextSearchBar.setText("");
+                /*getSupportFragmentManager().beginTransaction()
+                        .add(R.id.fragment_container_view, ExpandDishDialogFragment.class, null)
+                        .commit();*/
+                /*Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+                startActivity(intent);*/
+            }
+        });
 
         dishViewModel = new ViewModelProvider(this).get(DishViewModel.class);
         dishViewModel.getAllFoods().observe(this, new Observer<List<Dish>>() {
