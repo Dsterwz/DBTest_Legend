@@ -14,13 +14,4 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="NoBarTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/green</item>
-        <item name="colorPrimaryDark">#3C3F41</item>
-        <item name="colorAccent">@color/green</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
-    </style>
-
 </resources>

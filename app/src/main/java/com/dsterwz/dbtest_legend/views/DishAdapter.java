@@ -1,17 +1,22 @@
 package com.dsterwz.dbtest_legend.views;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dsterwz.dbtest_legend.MainActivity;
+import com.dsterwz.dbtest_legend.OneItemActivity;
 import com.dsterwz.dbtest_legend.R;
 import com.dsterwz.dbtest_legend.models.Dish;
 
@@ -37,11 +42,12 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.DishHolder> {
         private TextView textViewTitle;
         private TextView textViewPrice;
         private TextView textViewCount;
+        private TextView textViewMore;
         private ImageView imageViewIcon;
 
         private AppCompatButton buttonMinus;
         private AppCompatButton buttonPlus;
-        private AppCompatButton buttonBack;
+        private AppCompatImageButton buttonBack;
         private AppCompatButton buttonAddToCart;
         private AppCompatButton buttonContinueShop;
         private AppCompatButton buttonGoToCart;
@@ -65,15 +71,24 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.DishHolder> {
             textViewPriceExpanded = itemView.findViewById(R.id.text_view_price_expanded);
             imageViewIconExpanded = itemView.findViewById(R.id.dish_icon_expanded);
             expandedDishLayout = itemView.findViewById(R.id.expanded_dish);
+            textViewMore = itemView.findViewById(R.id.text_view_more);
 
-            /*buttonMinus = itemView.findViewById(R.id.button_minus);
+            buttonMinus = itemView.findViewById(R.id.button_minus);
             buttonPlus = itemView.findViewById(R.id.button_plus);
             buttonBack = itemView.findViewById(R.id.button_back);
             buttonAddToCart = itemView.findViewById(R.id.button_add_to_cart);
             buttonContinueShop = itemView.findViewById(R.id.button_continue_shop);
-            buttonGoToCart = itemView.findViewById(R.id.button_go_to_cart);*/
+            buttonGoToCart = itemView.findViewById(R.id.button_go_to_cart);
 
             countOfDish = 0;
+/*
+            buttonMinus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    countOfDish++;
+                    textViewCount.setText(String.valueOf(countOfDish));
+                }
+            });*/
 
             /*itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -96,6 +111,7 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.DishHolder> {
             });*/
         }
     }
+
 
     @NonNull
     @Override
@@ -122,7 +138,7 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.DishHolder> {
             holder.textViewTitle.setTextSize(20);
         else if (mDishName.length() >= 29) {
             holder.textViewTitle.setTextSize(18);
-            holder.textViewTitleExpanded.setTextSize(18);
+            holder.textViewTitleExpanded.setTextSize(16);
         }
         else holder.textViewTitle.setTextSize(22);
 
@@ -133,7 +149,7 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.DishHolder> {
         holder.itemView.setActivated(isExpanded);
 
 
-        /*holder.buttonPlus.setOnClickListener(new View.OnClickListener() {
+        holder.buttonPlus.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         holder.countOfDish++;
@@ -144,18 +160,29 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.DishHolder> {
             @Override
             public void onClick(View view) {
                 if (holder.countOfDish > 0) holder.countOfDish--;
+                holder.textViewCount.setText(String.valueOf(holder.countOfDish));
             }
         });
         holder.buttonAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //flex
+                holder.buttonAddToCart.setVisibility(View.GONE);
+                holder.buttonPlus.setVisibility(View.GONE);
+                holder.buttonMinus.setVisibility(View.GONE);
+                holder.buttonContinueShop.setVisibility(View.VISIBLE);
+                holder.buttonGoToCart.setVisibility(View.VISIBLE);
             }
         });
         holder.buttonContinueShop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //flex
+                holder.buttonAddToCart.setVisibility(View.VISIBLE);
+                holder.buttonPlus.setVisibility(View.VISIBLE);
+                holder.buttonMinus.setVisibility(View.VISIBLE);
+                holder.buttonContinueShop.setVisibility(View.GONE);
+                holder.buttonGoToCart.setVisibility(View.GONE);
+                mExpandedPosition = isExpanded ? -1:holder.getAdapterPosition();;
+                notifyDataSetChanged();
             }
         });
         holder.buttonGoToCart.setOnClickListener(new View.OnClickListener() {
@@ -170,10 +197,17 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.DishHolder> {
                 mExpandedPosition = isExpanded ? -1:holder.getAdapterPosition();;
                 notifyDataSetChanged();
             }
-        });*/
+        });
+        holder.textViewMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(view.getContext(), "zalupa", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(view.getContext(), OneItemActivity.class);
+                view.getContext().startActivity(intent);
+            }
+        });
 
         if (isExpanded) previousExpandedPosition = holder.getAdapterPosition();
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -183,6 +217,14 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.DishHolder> {
                 //notifyItemChanged(position);
             }
         });
+
+        /*holder.buttonMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.countOfDish++;
+                holder.textViewCount.setText(String.valueOf(holder.countOfDish));
+            }
+        });*/
     }
 
     @Override

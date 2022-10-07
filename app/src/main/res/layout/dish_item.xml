@@ -185,7 +185,6 @@
                 android:layout_height="40dp"
                 android:background="@drawable/button_background_green"
                 android:fontFamily="@font/nunito_bold"
-                android:onClick="onClickMinus"
                 android:text="-"
                 android:textAlignment="center"
                 android:textColor="@color/white"
@@ -202,7 +201,6 @@
                 android:layout_height="40dp"
                 android:background="@drawable/button_background_green"
                 android:fontFamily="@font/nunito_bold"
-                android:onClick="onClickPlus"
                 android:text="+"
                 android:textAlignment="center"
                 android:textColor="@color/white"
@@ -232,7 +230,6 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@color/no_color"
-                android:onClick="onClickBack"
                 android:src="@drawable/ic_back"
 
                 app:layout_constraintStart_toStartOf="parent"
