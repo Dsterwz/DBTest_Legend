@@ -48,6 +48,7 @@ public class OneItemActivity extends AppCompatActivity {
             Intent intent = getIntent();
 
             String supaDishName = intent.getStringExtra("Title");
+            if (supaDishName == null) supaDishName = "Заглушка";
             if (supaDishName.length() >= 18 && supaDishName.length() < 25)
                 textViewTitle.setTextSize(26);
             else if (supaDishName.length() >= 25) textViewTitle.setTextSize(22);

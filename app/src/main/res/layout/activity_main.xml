@@ -238,5 +238,75 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <RadioGroup
+        android:id="@+id/bottom_navigation_radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="23dp"
+        android:orientation="horizontal"
+        android:background="@drawable/button_background"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+        <RadioButton
+            android:id="@+id/radio_button_home"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/category_button_background"
+            android:button="@android:color/transparent"
+            android:checked="true"
+            android:fontFamily="@font/nunito_bold"
+            android:gravity="center"
+            android:text="Home"
+            android:textColor="@drawable/category_button_text_color"
+            android:textSize="17sp" />
+
+        <RadioButton
+            android:id="@+id/radio_button_cart"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/category_button_background"
+            android:button="@android:color/transparent"
+            android:fontFamily="@font/nunito_bold"
+            android:gravity="center"
+            android:text="Cart"
+            android:textColor="@drawable/category_button_text_color"
+            android:textSize="17sp" />
+
+        <RadioButton
+            android:id="@+id/radio_button_profile"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/category_button_background"
+            android:button="@android:color/transparent"
+            android:fontFamily="@font/nunito_bold"
+            android:gravity="center"
+            android:text="Profile"
+            android:textColor="@drawable/category_button_text_color"
+            android:textSize="17sp" />
+
+        <RadioButton
+            android:id="@+id/radio_button_history"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/category_button_background"
+            android:button="@android:color/transparent"
+            android:fontFamily="@font/nunito_bold"
+            android:gravity="center"
+            android:text="History"
+            android:textColor="@drawable/category_button_text_color"
+            android:textSize="17sp" />
+
+    </RadioGroup>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

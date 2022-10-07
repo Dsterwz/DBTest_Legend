@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private DishAdapter dishAdapter;
     private DishViewModel dishViewModel;
     private RadioGroup dishCategory;
+    private RadioGroup bottomNavigation;
 
     private FlexboxLayoutManager layoutManager;
     private EditText editTextSearchBar;
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         textViewResults = findViewById(R.id.text_view_results);
         editTextAddress = findViewById(R.id.edit_text_address);
         dishCategory = findViewById(R.id.categories_button_view);
+        bottomNavigation = findViewById(R.id.bottom_navigation_radio_group);
         editTextSearchBar = findViewById(R.id.edit_text_search_bar);
 
 
@@ -124,6 +126,20 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
                         break;
+                }
+            }
+        });
+
+        bottomNavigation.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i) {
+                    case R.id.radio_button_history:
+                    case R.id.radio_button_profile:
+                    case R.id.radio_button_cart:
+                        Intent intent = new Intent(MainActivity.this, OneItemActivity.class);
+                        startActivity(intent);
+
                 }
             }
         });
